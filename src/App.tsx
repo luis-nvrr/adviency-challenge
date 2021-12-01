@@ -1,10 +1,20 @@
-import "./styles.css";
+import GiftList from "./features/gifts/components/GiftList";
+import { useEffect } from "react";
+import useStore from "./features/gifts/hooks/gifts";
+import { Stack, Center } from "@chakra-ui/react";
 
 export default function App() {
+  const initializeGifts = useStore((state) => state.fetch);
+
+  useEffect(() => {
+    initializeGifts();
+  }, []);
+
   return (
-    <div className="App">
-      <h1>Regalos:</h1>
-      ...
-    </div>
+    <Stack>
+      <Center>
+        <GiftList />
+      </Center>
+    </Stack>
   );
 }
